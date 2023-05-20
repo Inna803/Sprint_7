@@ -26,7 +26,7 @@ public class CreatingACourierToLogInValidDataTest {
     public void setUp() {
         courier = Courier.getRandom(); // генерация случайного курьера
         courierClient = new CourierClient(); // инициализация клиента для взаимодействия с курьерами
-        courierClient.create(courier); // создание курьера
+        courierClient.createCourier(courier); // создание курьера
     }
 
     /**
@@ -47,7 +47,7 @@ public class CreatingACourierToLogInValidDataTest {
     @DisplayName("Создание курьера с валидными учетными данными")
     public void creatingCourierWithValidData() {
         Courier courier = Courier.getRandom(); // генерация случайного курьера
-        var createResponse = courierClient.create(courier); // создание курьера
+        var createResponse = courierClient.createCourier(courier); // создание курьера
         boolean isCreated = createResponse.extract().path("ok"); // проверка успешного создания курьера
         int statusCode = createResponse.extract().statusCode(); // извлечение кода ответа
         courierId = courierClient.login(CourierCredentials.from(courier)); // вход курьера в систему и получение идентификатора
@@ -64,7 +64,7 @@ public class CreatingACourierToLogInValidDataTest {
     @Test
     @Description("Вход курьера в систему с валидными учетными данными с помощью рандомного генератора")
     @DisplayName("Вход курьера в систему с валидными учетными данными")
-    public void LogInWithValidCredentials() {
+    public void logInWithValidCredentials() {
         courierId = courierClient.login(CourierCredentials.from(courier)); // вход курьера в систему и получение идентификатора
 
         assertThat(SC_OK, equalTo(SC_OK)); // проверка, что код ответа равен 200 (ОК)

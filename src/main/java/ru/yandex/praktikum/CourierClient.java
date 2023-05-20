@@ -10,7 +10,7 @@ public class CourierClient extends RestAssuredClient {
 
     // аннотация для отображения в отчёте фреймворка Allure
     @Step("Создание курьера")
-    public ValidatableResponse create(Courier courier) {
+    public ValidatableResponse createCourier(Courier courier) {
         return given()
                 .spec(getBaseSpec()) // используется базовая спецификация запроса
                 .body(courier) // устанавливается тело запроса с переданным объектом Courier

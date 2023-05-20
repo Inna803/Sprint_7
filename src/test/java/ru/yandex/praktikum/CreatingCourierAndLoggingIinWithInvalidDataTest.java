@@ -35,9 +35,9 @@ public class CreatingCourierAndLoggingIinWithInvalidDataTest {
     @DisplayName("Создание курьера с повторяющимся логином")
     public void createCourierWithDuplicateCredentials() {
         // создание курьера
-        courierClient.create(courier);
+        courierClient.createCourier(courier);
         // попытка создания курьера с повторяющимся логином
-        var createResponse = courierClient.create(courier);
+        var createResponse = courierClient.createCourier(courier);
         // получение статус-кода из ответа
         int statusCode = createResponse.extract().statusCode();
         // проверка ожидаемого и фактического сообщений об ошибке
@@ -51,12 +51,12 @@ public class CreatingCourierAndLoggingIinWithInvalidDataTest {
     @Test
     @Description("Создание курьера с нулевым значением в поле ввода login")
     @DisplayName("Запрос на создание курьера без логина")
-    public void CreateCourierWithEmptyLogin() {
+    public void createCourierWithEmptyLogin() {
         // устанавливаем значение поля login в null
         courier.setLogin(null);
 
         // выполняем запрос на создание курьера с использованием courierClient
-        var createResponse = courierClient.create(courier);
+        var createResponse = courierClient.createCourier(courier);
 
         // извлекаем статус-код ответа
         statusCode = createResponse.extract().statusCode();
@@ -78,12 +78,12 @@ public class CreatingCourierAndLoggingIinWithInvalidDataTest {
     @Test
     @Description("Создание курьера с нулевым значением в поле ввода password")
     @DisplayName("Запрос на создание курьера без пароля")
-    public void CreateCourierWithEmptyPassword() {
+    public void createCourierWithEmptyPassword() {
         // устанавливаем значение поля password в null
         courier.setPassword(null);
 
         // выполняем запрос на создание курьера с использованием courierClient
-        var createResponse = courierClient.create(courier);
+        var createResponse = courierClient.createCourier(courier);
 
         // извлекаем статус-код ответа
         statusCode = createResponse.extract().statusCode();
@@ -105,13 +105,13 @@ public class CreatingCourierAndLoggingIinWithInvalidDataTest {
     @Test
     @Description("Создание курьера с нулевым значением в поле ввода login и password")
     @DisplayName("Запрос на создание курьера без логина и пароля")
-    public void CreateCourierWithEmptyCredentials() {
+    public void createCourierWithEmptyCredentials() {
         // устанавливаем значения полей login и password в null
         courier.setLogin(null);
         courier.setPassword(null);
 
         // выполняем запрос на создание курьера с использованием courierClient
-        var createResponse = courierClient.create(courier);
+        var createResponse = courierClient.createCourier(courier);
 
         // извлекаем статус-код ответа
         statusCode = createResponse.extract().statusCode();
@@ -205,7 +205,7 @@ public class CreatingCourierAndLoggingIinWithInvalidDataTest {
     @Test
     @Description("Вход в систему с несуществующим значением в поле ввода login")
     @DisplayName("Запрос с несуществующим логином")
-    public void CourierLoginWithNonExistentLogin() {
+    public void courierLoginWithNonExistentLogin() {
         // выполняем запрос на вход в систему с несуществующим значением в поле login
         ValidatableResponse loginResponse = courierClient.loginIsNotValid(new CourierCredentials(courier.getLogin().concat("vfhujifvfhujif"), courier.getPassword()));
 
@@ -229,7 +229,7 @@ public class CreatingCourierAndLoggingIinWithInvalidDataTest {
     @Test
     @Description("Вход в систему с несуществующим значением в поле ввода password")
     @DisplayName("Запрос с несуществующим паролем")
-    public void CourierLoginWithNonExistentPassword() {
+    public void courierLoginWithNonExistentPassword() {
         // выполняем запрос на вход в систему с несуществующим значением в поле password
         ValidatableResponse loginResponse = courierClient.loginIsNotValid(new CourierCredentials(courier.getLogin(), courier.getPassword().concat("vfhujif2022")));
 
@@ -253,7 +253,7 @@ public class CreatingCourierAndLoggingIinWithInvalidDataTest {
     @Test
     @Description("Вход в систему с несуществующим значением в поле ввода login и password")
     @DisplayName("Запрос с несуществующей парой логином-пароль")
-    public void CourierLoginWithNonExistentLoginPassword() {
+    public void courierLoginWithNonExistentLoginPassword() {
         // выполняем запрос на вход в систему с несуществующим значением в полях login и password
         ValidatableResponse loginResponse = courierClient.loginIsNotValid(new CourierCredentials(courier.getLogin().concat("vfhbghjbvujif"), courier.getPassword().concat("vfhujif202213")));
 
