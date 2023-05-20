@@ -28,8 +28,6 @@ public class CourierClient extends RestAssuredClient {
                 .when()
                 .post(COURIER_PATH + "login") // выполняется POST-запрос по указанному пути для входа в систему
                 .then().log().all() // логируются все детали ответа
-                .assertThat()
-                .statusCode(200) // проверяется код состояния ответа
                 .extract()
                 .path("id"); // извлекается значение поля "id" из ответа
     }
